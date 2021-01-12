@@ -1,23 +1,35 @@
 pipeline{
-	agent any
+    agent any
     stages{
-    	stage('Compile stage of bank.py'){
-        	steps{
-            	cd com/beehyv
+        stage('Compile bank.py'){
+            steps{
+                cd com/beehyv
                 python bank.py
             }
+
         }
-        stage('Compile stage of calculator.py'){
-        	steps{
-				cd com/beehyv
-			    python calculator.py
-			}
-		}
-		stage('Compile stage of employee.py'){
-			steps{
-				cd com/beehyv
-				python employee.py
-			}
-		}
-	}
+        stage('Compile calculator.py'){
+            steps{
+                cd com/beehyv
+                python calculator.py
+            }
+
+        }
+        stage('Compile employee.py'){
+            steps{
+                cd com/beehyv
+                python employee.py
+            }
+
+        }
+        stage('testing'){
+            steps{
+                cd unit-test-practice
+                python -m {unittest}
+            }
+
+        }
+
+    }
+
 }
